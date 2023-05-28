@@ -15,7 +15,7 @@ class Category(models.Model):
     class Meta:
         ordering = ("name",)
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.name
 
     def get_absolute_url(self):
@@ -37,7 +37,7 @@ class Product(models.Model):
     class Meta:
         ordering = ("-date_added",)
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.name
 
     def get_absolute_url(self):
@@ -45,11 +45,11 @@ class Product(models.Model):
 
     def get_image(self):
         if self.image:
-            return host + self.thumbnail.url
+            return host + self.image.url
         return ""
 
     def get_thumbnail(self):
-        if self.image:
+        if self.thumbnail:
             return host + self.thumbnail.url
         else:
             if self.image:
@@ -58,16 +58,16 @@ class Product(models.Model):
 
                 return host + self.thumbnail.url
             else:
-                return ""
+                return ''
 
     def make_thumbnail(self, image, size=(300, 200)):
         img = Image.open(image)
-        img.convert("RGB")
+        img.convert('RGB')
         img.thumbnail(size)
 
         thumb_io = BytesIO()
-        img.save(thumb_io, "JPEG", quality=85)
+        img.save(thumb_io, 'JPEG', quality=85)
 
         thumbnail = File(thumb_io, name=image.name)
-        
+
         return thumbnail
