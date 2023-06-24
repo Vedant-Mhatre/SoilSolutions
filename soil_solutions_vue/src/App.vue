@@ -45,8 +45,14 @@ export default {
   data() {
     return {
       showMobileMenu: false,
+      cart: {
+        items: [] // Array to store items in the cart
+      }
     }
-  }
+  },
+  beforeCreate() {
+    this.$store.commit('initializeStore') // Call the 'initializeStore' mutation before the component is created
+  },
 }
 </script>
 
