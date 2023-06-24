@@ -54,6 +54,8 @@ export default {
   },
   mounted() {
     this.getLatestProducts()
+
+    document.title = "Soil Solutions: Organic products which won't harm your land"
   },
   methods: {
     getLatestProducts() {
