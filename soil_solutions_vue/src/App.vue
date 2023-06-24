@@ -22,7 +22,7 @@
                 <router-link to="/log-in" class="button is-light">Log In</router-link>
                 <router-link to="/cart" class="button is-success">
                   <span class="icon"><i class="fas fa-shopping-cart"></i></span>
-                  <span>Cart</span>
+                  <span>Cart {{ cartTotalLength }} </span>
                 </router-link>
               </div>
             </div>
@@ -53,6 +53,22 @@ export default {
   beforeCreate() {
     this.$store.commit('initializeStore') // Call the 'initializeStore' mutation before the component is created
   },
+  mounted() {
+    this.cart = this.$store.state.cart // Set the component's 'cart' data property to the value from the store
+  },
+  computed: {
+    cartTotalLength(){
+
+      let totalLength = 0
+      
+      // Calculate the total length or quantity of items in the cart
+      for (let i=0; i < this.cart.items.length; i++){
+        totalLength += this.cart.items[i].quantity
+      }
+
+      return totalLength;
+    }
+  }
 }
 </script>
 
