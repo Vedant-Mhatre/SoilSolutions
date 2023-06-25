@@ -3,12 +3,18 @@ import HomeView from '../views/HomeView.vue'
 
 import Product from '../views/ProductView.vue'
 import Category from '../views/CategoryView.vue'
+import Search from '../views/SearchView.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: Search
   },
   {
     path: '/about',

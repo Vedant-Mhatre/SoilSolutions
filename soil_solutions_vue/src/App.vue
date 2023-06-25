@@ -12,6 +12,27 @@
       </div>
       
       <div class="navbar-menu" id="navbar-menu" v-bind:class="{'is-active': showMobileMenu }">
+
+        <div class="navbar-start">
+          <div class="navbar-item">
+            <form method="get" action="/search">
+              <div class="field has-addons">
+                <div class="control">
+                  <input type="text" class="input" placeholder="What are you looking for?" name="query">
+                </div>
+
+                <div class="control">
+                  <button class="button is-success">
+                      <span class="icon">
+                      <i class="fas fa-search"></i>
+                      </span>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
         <div class="navbar-end">
             <router-link to="/fertilizers" class="navbar-item">Fertilizers</router-link>
             <router-link to="/seeds" class="navbar-item">Seeds</router-link>
@@ -74,4 +95,13 @@ export default {
 
 <style lang="scss">
 @import '../node_modules/bulma';
+.navbar-item .input {
+  width: 800px; /* Adjust the width as desired */
+}
+
+.navbar-start {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
 </style>
