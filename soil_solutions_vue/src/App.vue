@@ -95,7 +95,8 @@ export default {
 }
 
 .navbar-item .input {
-  width: 800px;
+  width: 100%; 
+  max-width: 800px;
 }
 
 .navbar-start {
@@ -110,7 +111,7 @@ export default {
 
 /* Search Bar */
 .search-form {
-  max-width: 800px;
+  max-width: 100%;
   width: 100%;
 }
 
@@ -126,5 +127,16 @@ export default {
 .footer {
   padding: 2rem 1.5rem;
   background-color: #f5f5f5;
+}
+
+/* Media Queries */
+@media screen and (min-width: 769px) {
+  /* Adjust the width of the search bar on larger screens */
+  .navbar-item .input,
+  .search-form {
+    width: auto;
+    min-width: 400px;
+    max-width: 600px; /* Adjust the value according to your needs */
+  }
 }
 </style>
