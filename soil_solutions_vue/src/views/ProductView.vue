@@ -8,15 +8,19 @@
                     </figure>
                 </div>
                 <div class="product-details">
-                    <h1 class="title">
-                        {{ product.name }}
-                    </h1>
+                    <h1 class="title">{{ product.name }}</h1>
                     <p>{{ product.description }}</p>
                 </div>
             </div>
 
             <div class="column is-3">
                 <h2 class="subtitle">Information</h2>
+
+                <div class="field">
+                    <div class="control">
+                        <p><strong>Price: </strong>${{ product.price }}</p>
+                    </div>
+                </div>
 
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
@@ -25,20 +29,26 @@
                     <div class="field-body">
                         <div class="field">
                             <div class="control">
-                                <input type="number" class="input" min="1" v-model="quantity">
+                                <div class="select">
+                                    <select v-model="quantity">
+                                        <option v-for="num in quantityOptions" :key="num" :value="num">{{ num }}</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <div class="field">
-                            <div class="control">
-                                <a class="button is-dark" @click="addToCart">Add to cart</a>
-                            </div>
-                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <a class="button is-success is-fullwidth is-rounded" @click="addToCart">Add to Cart</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
+  
   
 <script>
 import axios from 'axios'
@@ -49,7 +59,8 @@ export default {
     data() {
         return {
             product: {},
-            quantity: 1
+            quantity: 1,
+            quantityOptions: [1, 2, 3, 4, 5, 6, 7, 8]
         }
     },
     mounted() {
@@ -96,6 +107,10 @@ export default {
 </script>
   
 <style scoped>
+.page-product {
+    padding-top: 1rem;
+}
+
 .product-image {
     display: flex;
     justify-content: center;
@@ -136,8 +151,13 @@ export default {
     margin-right: 0.5rem;
 }
 
-.button.is-dark {
-    margin-top: 0.5rem;
+.select select {
+    width: 100px;
+}
+
+.button.is-success.is-fullwidth {
+    width: 100%;
+    border-radius: 50px;
 }
 </style>
   
