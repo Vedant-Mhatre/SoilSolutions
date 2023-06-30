@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -63,6 +64,15 @@ export default {
   },
   beforeCreate() {
     this.$store.commit('initializeStore') // Call the 'initializeStore' mutation before the component is created
+
+    const token = this.$store.state.token
+
+    if (token) {
+      axios.defaults.headers.common['Authorization'] = "Token" + token
+    } else {
+      axios.defaults.headers.common['Authorization'] = ""
+    }
+
   },
   mounted() {
     this.cart = this.$store.state.cart // Set the component's 'cart' data property to the value from the store
@@ -95,7 +105,7 @@ export default {
 }
 
 .navbar-item .input {
-  width: 100%; 
+  width: 100%;
   max-width: 800px;
 }
 
@@ -131,12 +141,14 @@ export default {
 
 /* Media Queries */
 @media screen and (min-width: 769px) {
+
   /* Adjust the width of the search bar on larger screens */
   .navbar-item .input,
   .search-form {
     width: auto;
     min-width: 400px;
-    max-width: 600px; /* Adjust the value according to your needs */
+    max-width: 600px;
+    /* Adjust the value according to your needs */
   }
 }
 </style>
