@@ -13,7 +13,7 @@ export default createStore({
   mutations: {
     // Initialize the store by retrieving cart data from local storage if it exists,
     // otherwise set the initial cart state and store it in local storage
-    initalizeStore (state) {
+    initializeStore (state) {
       if (localStorage.getItem('cart')) {
         state.cart = JSON.parse(localStorage.getItem('cart'))
       } else {
