@@ -32,7 +32,13 @@
         <div class="navbar-end">
           <router-link to="/fertilizers" class="navbar-item">Fertilizers</router-link>
           <router-link to="/seeds" class="navbar-item">Seeds</router-link>
-          <router-link to="/log-in" class="navbar-item">Log In</router-link>
+          <template v-if="$store.state.isAuthenticated">
+            <router-link to="/my-account" class="navbar-item">My account</router-link>
+          </template>
+
+          <template v-else>
+            <router-link to="/log-in" class="navbar-item">Log in</router-link>
+          </template>
           <router-link to="/cart" class="navbar-item">
             <i class="fas fa-shopping-cart"></i>
             <span>Cart {{ cartTotalLength }}</span>
