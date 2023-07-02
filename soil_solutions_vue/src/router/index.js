@@ -11,6 +11,8 @@ import Cart from '../views/CartView.vue'
 import SignUp from '../views/SignUpView.vue'
 import LogIn from '../views/LogInView.vue'
 import MyAccount from '../views/MyAccountView.vue'
+import Success from '../views/SuccessView.vue'
+import Checkout from '../views/CheckoutView.vue'
 
 const routes = [
   {
@@ -19,14 +21,12 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/search',
-    name: 'search',
-    component: Search
-  },
-  {
-    path: '/cart',
-    name: 'cart',
-    component: Cart
+    path: '/about',
+    name: 'about',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import('../views/AboutView.vue')
   },
   {
     path: '/sign-up',
@@ -47,20 +47,35 @@ const routes = [
     }
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import('../views/AboutView.vue')
+    path: '/search',
+    name: 'Search',
+    component: Search
   },
   {
-    path: '/:category_slug/:product_slug/',
+    path: '/cart',
+    name: 'Cart',
+    component: Cart
+  },
+  {
+    path: '/cart/success',
+    name: 'Success',
+    component: Success
+  },
+  {
+    path: '/cart/checkout',
+    name: 'Checkout',
+    component: Checkout,
+    meta: {
+      requireLogin: true
+    }
+  },
+  {
+    path: '/:category_slug/:product_slug',
     name: 'Product',
     component: Product
   },
   {
-    path: '/:category_slug/',
+    path: '/:category_slug',
     name: 'Category',
     component: Category
   }
