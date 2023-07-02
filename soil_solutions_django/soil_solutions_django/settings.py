@@ -10,6 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+from os.path import join
+from os import getenv
+from dotenv import load_dotenv
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,6 +27,15 @@ SECRET_KEY = 'django-insecure-jy(zo1lm$wt(t6cz_^qx!i@=fwc)o8dgp06u7-me8dmwwc=adk
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+# Build the path to the secrets.env file
+dotenv_file = join(BASE_DIR, 'secrets.env')
+
+# Load environment variables from secrets.env file
+load_dotenv(dotenv_file)
+
+# Set environment variables
+STRIPE_SECRET_KEY = getenv('STRIPE_SECRET_KEY')
 
 ALLOWED_HOSTS = []
 
@@ -42,6 +54,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'djoser',
     'product',
+    'order'
 ]
 
 CORS_ALLOWED_ORIGINS = [
